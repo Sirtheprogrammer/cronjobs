@@ -29,8 +29,8 @@ jobs:
 
       - name: 🔧 Git setup
         run: |
-          git config user.name "auto-bot"
-          git config user.email "auto-bot@users.noreply.github.com"
+          git config user.name "sirtheprogrammer"
+          git config user.email "sirtheprogrammer@gmail.com"
 
       - name: 🎲 Auto commits
         run: |
