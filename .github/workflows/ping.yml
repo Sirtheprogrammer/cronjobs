@@ -1,0 +1,34 @@
+name: Endpoint Keepalive
+
+on:
+  schedule:
+    - cron: "*/25 * * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Show start time
+        run: |
+          echo "=================================="
+          echo "Starting endpoint ping"
+          echo "Time: $(date -u)"
+          echo "Endpoint: https://nyonyatu.store/v1/reset"
+          echo "=================================="
+
+      - name: Ping endpoint and capture response
+        run: |
+          RESPONSE=$(curl -s -w "\nHTTP_STATUS:%{http_code}\nTIME:%{time_total}s\n" https://nyonyatu.store/v1/reset)
+
+          echo "----------- RESPONSE -----------"
+          echo "$RESPONSE"
+          echo "--------------------------------"
+
+      - name: Show finish time
+        run: |
+          echo "=================================="
+          echo "Finished ping"
+          echo "Time: $(date -u)"
+          echo "=================================="
